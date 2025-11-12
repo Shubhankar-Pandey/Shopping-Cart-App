@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { FaCartShopping } from "react-icons/fa6";
+import { FaHome } from "react-icons/fa";
 
 function Navbar() {
   const { cart } = useSelector((state) => state);
@@ -8,14 +9,27 @@ function Navbar() {
   return (
     <nav className="w-full shadow-lg sticky top-0 z-50
     bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+
       <div className="max-w-7xl mx-auto h-16 px-6 flex items-center justify-between">
 
         {/* ✅ Logo or Brand Name */}
         <NavLink to="/">
-          <h1 className="text-2xl font-bold tracking-wide text-white hover:text-yellow-300 duration-200">
+          <h1 className="text-4xl font-bold tracking-wide text-white hover:text-yellow-300 duration-200">
             ShopX
           </h1>
         </NavLink>
+
+          <NavLink
+            to="/"
+            className="flex gap-3 items-center text-white
+             hover:text-yellow-300 duration-200">
+          
+            <FaHome className="text-2xl" />
+            <span className="font-bold text-xl ">
+              Home
+            </span>
+
+          </NavLink>
 
         {/* ✅ Right Side Navigation Elements */}
         <div className="flex items-center gap-8">
@@ -32,7 +46,7 @@ function Navbar() {
                 {/* Cart Count Badge */}
                 {cart.length > 0 && (
                   <span className="absolute -top-2 -right-3 bg-yellow-400 text-black text-xs font-bold 
-                  w-5 h-5 flex justify-center items-center rounded-full">
+                  w-5 h-5 flex justify-center items-center rounded-full animate-bounce">
                     {cart.length}
                   </span>
                 )}

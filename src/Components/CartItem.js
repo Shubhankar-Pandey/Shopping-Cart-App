@@ -8,7 +8,7 @@ function CartItem({ cartItem }) {
 
   function removeFromCart() {
     dispatch(remove(cartItem.id));
-    toast.success("Removed from cart");
+    toast.error("Removed from cart");
   }
 
   return (

@@ -15,7 +15,7 @@ function Item({ mobile }) {
 
   function removeFromCart() {
     dispatch(remove(mobile.id));
-    toast.success("Removed from Cart");
+    toast.error("Removed from Cart");
   }
 
   function itemClickHandler() {
