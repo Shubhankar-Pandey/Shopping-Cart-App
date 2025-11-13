@@ -1,40 +1,50 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./Slices/CartSlice";
+import authReducer from "./Slices/AuthSlice";
 
-// Load cart data from localStorage (if available)
-const loadCartFromLocalStorage = () => {
+// === Load data from localStorage ===
+const loadFromLocalStorage = () => {
   try {
     const savedCart = localStorage.getItem("cart");
-    return savedCart ? JSON.parse(savedCart) : [];
+    const savedAuth = localStorage.getItem("auth");
+
+    return {
+      cart: savedCart ? JSON.parse(savedCart) : [],
+      auth: savedAuth ? JSON.parse(savedAuth) : false,
+    };
   } 
   catch (error) {
-    console.error("Error loading cart from localStorage", error);
-    return [];
+    console.error("Error loading data from localStorage", error);
+    return {
+      cart: [],
+      auth: false,
+    };
   }
 };
 
-// Save cart data to localStorage
-const saveCartToLocalStorage = (state) => {
+// === Save data to localStorage ===
+const saveToLocalStorage = (state) => {
   try {
     const cartData = JSON.stringify(state.cart);
+    const authData = JSON.stringify(state.auth);
     localStorage.setItem("cart", cartData);
+    localStorage.setItem("auth", authData);
   } 
   catch (error) {
-    console.error("Error saving cart to localStorage", error);
+    console.error("Error saving data to localStorage", error);
   }
 };
 
-// Initialize the store with persisted data
+// === Configure the store ===
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
+    auth: authReducer,
   },
-  preloadedState: {
-    cart: loadCartFromLocalStorage(),
-  },
+  preloadedState: loadFromLocalStorage(),
 });
 
-// Subscribe to store updates — save cart whenever it changes
+// === Auto-save on any state change ===
 store.subscribe(() => {
-  saveCartToLocalStorage(store.getState());
+  saveToLocalStorage(store.getState());
 });

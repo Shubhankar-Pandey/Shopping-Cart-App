@@ -1,11 +1,19 @@
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { login } from "../Redux/Slices/AuthSlice"
 
 function LoginPage() {
   const navigate = useNavigate();
 
   function submitHandler(e) {
-    e.preventDefault();   // prevents page reload
     navigate("/");
+  }
+
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  function loginClickHandler(){
+    dispatch(login());
   }
 
   return (
@@ -49,6 +57,7 @@ function LoginPage() {
 
         {/* Login Button */}
         <button
+          onClick={loginClickHandler}
           className="mt-2 bg-yellow-400 text-gray-900 font-extrabold py-3 rounded-full
           hover:bg-yellow-300 hover:scale-[1.02] transition-all duration-300 text-lg shadow-xl"
         >

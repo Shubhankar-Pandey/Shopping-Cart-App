@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux";
-import CartItem from "./CartItem";
+import CartItem from "../Components/CartItem";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 function CartPage() {
-  const { cart } = useSelector((state) => state);
+  const cart  = useSelector((state) => state.cart);
+  const auth = useSelector((state) => state.auth);
   const [totalAmount, setTotalAmount] = useState(0);
   const navigate = useNavigate();
 
@@ -13,7 +15,13 @@ function CartPage() {
   }, [cart]);
 
   function buyNowHandler(){
-    navigate("/buyNowPage")
+    if(auth === true){
+      navigate("/buyNowPage");
+    }
+    else{
+      toast.error("Need to login first. Redirecting to login page, please wait");
+      setTimeout(() => navigate("/loginPage"), 800);
+    }
   }
 
   return (

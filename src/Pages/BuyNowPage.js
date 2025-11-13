@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import BuyNowPageItem from "./BuyNowPageItem";
+import BuyNowPageItem from "../Components/BuyNowPageItem";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { clearCart } from "../Redux/Slices/CartSlice";

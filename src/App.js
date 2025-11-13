@@ -1,12 +1,12 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import CartPage from "./Components/CartPage";
-import HomePage from "./Components/HomePage";
-import LoginPage from "./Components/LoginPage";
-import SignUpPage from "./Components/SignUpPage";
-import CompleteItem from "./Components/CompleteItem";
-import BuyNowPage from "./Components/BuyNowPage";
-import OrderPlacedPage from "./Components/OrderPlacedPage";
+import CartPage from "./Pages/CartPage";
+import HomePage from "./Pages/HomePage";
+import LoginPage from "./Pages/LoginPage";
+import SignUpPage from "./Pages/SignUpPage";
+import CompleteItem from "./Components/CompleteMobile";
+import BuyNowPage from "./Pages/BuyNowPage";
+import OrderPlacedPage from "./Pages/OrderPlacedPage";
 
 
 import { Toaster } from "react-hot-toast";

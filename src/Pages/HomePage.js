@@ -1,6 +1,6 @@
 import {mobileData} from "../mobileData"
-import Item from "./Item"
-import HeroSection from "./HeroSection";
+import Item from "../Components/MobileCard"
+import HeroSection from "../Components/HeroSection";
 
 function HomePage(){
     return (
