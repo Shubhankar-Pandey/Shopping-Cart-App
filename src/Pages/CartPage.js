@@ -19,7 +19,7 @@ function CartPage() {
       navigate("/buyNowPage");
     }
     else{
-      toast.error("Need to login first. Redirecting to login page, please wait");
+      toast.error("Need to login first. Redirecting to login page");
       setTimeout(() => navigate("/loginPage"), 800);
     }
   }

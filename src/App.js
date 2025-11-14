@@ -4,9 +4,11 @@ import CartPage from "./Pages/CartPage";
 import HomePage from "./Pages/HomePage";
 import LoginPage from "./Pages/LoginPage";
 import SignUpPage from "./Pages/SignUpPage";
-import CompleteItem from "./Components/CompleteMobile";
+import CompleteMobile from "./Components/CompleteMobile";
 import BuyNowPage from "./Pages/BuyNowPage";
 import OrderPlacedPage from "./Pages/OrderPlacedPage";
+import CompleteShoe from "./Components/CompleteShoe";
+
 
 
 import { Toaster } from "react-hot-toast";
@@ -17,7 +19,7 @@ import Navbar from "./Components/Navbar";
 
 function App() {
 
-  const {cart} = useSelector((state) => state);
+  const cart = useSelector((state) => state.cart);
 
   return (
     <div>
@@ -26,10 +28,13 @@ function App() {
       
       <Navbar/>
 
+      
+
       <Routes>
           <Route path='/' element = {<HomePage/>}></Route>
           <Route path='/cart' element = {<CartPage/>}></Route>
-          <Route path='/mobile/:title' element={<CompleteItem />} /> 
+          <Route path='/shoes/:title' element={<CompleteShoe />} /> 
+          <Route path='/mobile/:title' element={<CompleteMobile />} /> 
           <Route path="/loginPage" element = {<LoginPage></LoginPage>}></Route>
           <Route path="/signUpPage" element = {<SignUpPage></SignUpPage>}></Route>
           <Route path="/buyNowPage" element = {<BuyNowPage></BuyNowPage>}></Route>

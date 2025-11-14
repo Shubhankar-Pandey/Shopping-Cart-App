@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import BuyNowPageItem from "../Components/BuyNowPageItem";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { clearCart } from "../Redux/Slices/CartSlice";
@@ -128,15 +127,6 @@ function BuyNowPage() {
             </div>
         </form>
 
-
-
-          {/* ✅ Products List */}
-          <div className="flex flex-col gap-6">
-            {cart.map((cartItem) => (
-              <BuyNowPageItem key={cartItem.id} cartItem={cartItem} />
-            ))}
-          </div>
-
         </div>
 
         {/* ✅ RIGHT SIDE (Sticky Summary + Payment) */}
@@ -153,42 +143,17 @@ function BuyNowPage() {
                 <span className="text-green-600 font-bold"> ₹ {totalAmount.toLocaleString()} </span>
               </p>
             </div>
+            <button 
+              onClick={cartHandler}
+              className="mt-6 w-full py-3 bg-green-600 hover:bg-green-700 text-white
+               font-bold rounded-full text-xl transition">
+              Proceed to payment
+            </button>
           </div>
 
-          {/* ✅ Payment Section (ALSO STICKY BELOW SUMMARY) */}
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-300 p-6">
-
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Payment Method</h2>
-
-            <div className="flex flex-col gap-3 text-lg font-semibold">
-              <label>
-                <input type="radio" name="payment" value="upi"
-                  onChange={(e) => setPaymentMethod(e.target.value)} /> UPI (GPay / PhonePe / Paytm)
-              </label>
-
-              <label>
-                <input type="radio" name="payment" value="cod"
-                  onChange={(e) => setPaymentMethod(e.target.value)} /> Cash on Delivery
-              </label>
-
-              <label>
-                <input type="radio" name="payment" value="card"
-                  onChange={(e) => setPaymentMethod(e.target.value)} /> Credit / Debit Card
-              </label>
-
-              <label>
-                <input type="radio" name="payment" value="netbanking"
-                  onChange={(e) => setPaymentMethod(e.target.value)} /> Net Banking
-              </label>
-            </div>
             
             
-                <button 
-                    onClick={cartHandler}
-                    className="mt-6 w-full py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-full text-xl transition"
-                    >
-                    Place Order
-                </button>
+                
             
             
           </div>
@@ -196,7 +161,7 @@ function BuyNowPage() {
         </div>
 
       </div>
-    </div>
+    
   );
 }
 

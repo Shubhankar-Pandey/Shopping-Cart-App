@@ -3,24 +3,24 @@ import { add, remove } from "../Redux/Slices/CartSlice";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function MobileCard({ mobile }) {
-  const cart  = useSelector((state) => state.cart);
+function ShoeCard({ shoe }) {
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function addToCart() {
-    dispatch(add(mobile));
+    dispatch(add(shoe));
     toast.success("Added to Cart!");
   }
 
   function removeFromCart() {
-    dispatch(remove(mobile.id));
+    dispatch(remove(shoe.id));
     toast.error("Removed from Cart");
   }
 
   function itemClickHandler() {
-    const title = mobile.title.toLowerCase().replace(/\s+/g, "");
-    navigate(`/mobile/${title}`, { state: { mobile } });
+    const title = shoe.title.toLowerCase().replace(/\s+/g, "");
+    navigate(`/shoes/${title}`, { state: { shoe } });
   }
 
   return (
@@ -34,23 +34,23 @@ function MobileCard({ mobile }) {
         className="cursor-pointer w-full h-[220px] flex justify-center items-center rounded-xl bg-gray-100 hover:bg-gray-200 duration-300"
       >
         <img
-          src={mobile.image}
-          className="object-contain w-[70%] h-[90%] transition-transform hover:scale-105"
-          alt="mobile"
+          src={shoe.image}
+          className="object-contain w-[75%] h-[90%] transition-transform hover:scale-105"
+          alt="shoe"
         />
       </div>
 
       {/* Title + Price */}
       <div className="mt-3 flex justify-between items-center">
-        <h2 className="font-bold text-xl tracking-wide">{mobile.title}</h2>
-        <p className="font-bold text-green-600 text-2xl">₹{mobile.price}</p>
+        <h2 className="font-bold text-xl tracking-wide">{shoe.title}</h2>
+        <p className="font-bold text-green-600 text-2xl">₹{shoe.price}</p>
       </div>
 
-      {/* Specs without icons */}
+      {/* Short Specs */}
       <ul className="mt-3 text-gray-700 text-sm space-y-1 font-semibold">
-        <li>Processor: {mobile.processor}</li>
-        <li>Storage: {mobile.space} GB</li>
-        <li>Main Camera: {mobile.mainCamera}</li>
+        <li>Brand: {shoe.brand}</li>
+        <li>Category: {shoe.category}</li>
+        <li>Material: {shoe.material}</li>
       </ul>
 
       {/* Buttons */}
@@ -62,7 +62,7 @@ function MobileCard({ mobile }) {
           View Details
         </button>
 
-        {cart.some((p) => p.id === mobile.id) ? (
+        {cart.some((p) => p.id === shoe.id) ? (
           <button
             onClick={removeFromCart}
             className="w-[45%] px-3 py-2 rounded-full bg-red-500 hover:bg-red-600 text-white font-semibold duration-200"
@@ -82,4 +82,4 @@ function MobileCard({ mobile }) {
   );
 }
 
-export default MobileCard;
+export default ShoeCard;

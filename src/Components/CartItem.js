@@ -26,13 +26,6 @@ function CartItem({ cartItem }) {
 
         <div>
           <p className="text-xl font-bold tracking-wide">{cartItem.title}</p>
-
-          <ul className="mt-2 text-gray-700 text-sm space-y-1 font-medium">
-            <li>Processor: {cartItem.processor}</li>
-            <li>Storage: {cartItem.space}GB</li>
-            <li>Front Camera: {cartItem.frontCamera}</li>
-            <li>Rear Camera: {cartItem.rearCamera}</li>
-          </ul>
         </div>
       </div>
 
