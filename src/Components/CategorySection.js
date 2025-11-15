@@ -9,12 +9,12 @@ function CategorySection() {
   ];
 
   return (
-    <div className="w-full py-2
-    bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600
-    flex justify-center items-center">
-      
+    <div
+      className="w-full py-2 sticky top-16 z-40
+      bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600
+      flex justify-center items-center shadow-md"
+    >
       <div className="max-w-6xl mx-auto flex gap-4 overflow-x-auto px-5 scrollbar-none">
-
         {categories.map((cat, index) => (
           <button
             key={index}
@@ -25,9 +25,7 @@ function CategorySection() {
             {cat}
           </button>
         ))}
-
       </div>
-
     </div>
   );
 }

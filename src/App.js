@@ -26,9 +26,7 @@ function App() {
 
        <Toaster position="top-center" />
       
-      <Navbar/>
-
-      
+      <Navbar/>  
 
       <Routes>
           <Route path='/' element = {<HomePage/>}></Route>
