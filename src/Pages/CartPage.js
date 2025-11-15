@@ -3,6 +3,7 @@ import CartItem from "../Components/CartItem";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { FaCartShopping } from "react-icons/fa6";
 
 function CartPage() {
   const cart  = useSelector((state) => state.cart);
@@ -11,7 +12,7 @@ function CartPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTotalAmount(cart.reduce((acc, curr) => acc + curr.price, 0));
+    setTotalAmount(cart.reduce((acc, curr) => acc + curr.price*curr.quantity, 0));
   }, [cart]);
 
   function buyNowHandler(){
@@ -63,7 +64,9 @@ function CartPage() {
         // ✅ Empty cart state
         <div className="w-full flex flex-col justify-center items-center">
           <div className="rounded-full p-8 flex flex-col justify-center items-center">
-              <h1 className="font-bold text-3xl text-white"> Cart is Empty</h1>
+              <h1 className="font-bold text-3xl text-white flex gap-5"> 
+                <span><FaCartShopping className="text-5xl" /></span>
+                Cart is Empty</h1>
               <NavLink to="/">
                 <button className="mt-6 bg-yellow-400 hover:bg-yellow-500 font-bold px-10 py-3
                     rounded-full text-xl">

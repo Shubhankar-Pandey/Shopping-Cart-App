@@ -11,7 +11,6 @@ function BuyNowPage() {
   const [totalAmount, setTotalAmount] = useState(0);
   const [addressSaved, setAddressSaved] = useState(false);
   const navigate = useNavigate();
-  const [paymentMethod, setPaymentMethod] = useState("");
   const dispatch = useDispatch();
 
 
@@ -22,11 +21,6 @@ function BuyNowPage() {
   function cartHandler() {
     if (!addressSaved) {
       toast.error("Please save delivery address first!");
-      return;
-    }
-
-    if (!paymentMethod) {
-      toast.error("Please select a payment option");
       return;
     }
 

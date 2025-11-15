@@ -8,6 +8,10 @@ import CompleteMobile from "./Components/CompleteMobile";
 import BuyNowPage from "./Pages/BuyNowPage";
 import OrderPlacedPage from "./Pages/OrderPlacedPage";
 import CompleteShoe from "./Components/CompleteShoe";
+import CompleteLaptop from "./Components/CompleteLaptop";
+import CompleteMenCloth from "./Components/CompleteMenCloth";
+import CompleteSkinCare from "./Components/CompleteSkinCare";
+import CompleteWomenCloth from "./Components/CompleteWomenCloth";
 
 
 
@@ -33,6 +37,10 @@ function App() {
           <Route path='/cart' element = {<CartPage/>}></Route>
           <Route path='/shoes/:title' element={<CompleteShoe />} /> 
           <Route path='/mobile/:title' element={<CompleteMobile />} /> 
+          <Route path='/laptop/:title' element={<CompleteLaptop />} /> 
+          <Route path='/mencloth/:title' element={<CompleteMenCloth />} /> 
+          <Route path='/skincare/:title' element={<CompleteSkinCare />} /> 
+          <Route path='/womencloth/:title' element={<CompleteWomenCloth />} /> 
           <Route path="/loginPage" element = {<LoginPage></LoginPage>}></Route>
           <Route path="/signUpPage" element = {<SignUpPage></SignUpPage>}></Route>
           <Route path="/buyNowPage" element = {<BuyNowPage></BuyNowPage>}></Route>

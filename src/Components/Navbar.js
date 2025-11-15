@@ -6,19 +6,28 @@ import { CiLogout } from "react-icons/ci";
 import {logout} from "../Redux/Slices/AuthSlice";
 import {clearCart} from "../Redux/Slices/CartSlice";
 import {toast} from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 function Navbar() {
   const cart = useSelector((state) => state.cart); 
   const auth = useSelector((state) => state.auth); 
 
+  const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    setQuantity(cart.reduce((acc, curr) => acc + curr.quantity, 0 ));
+  })
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
   function logOutHandler(){
     if(auth === true){
       dispatch(logout());
       dispatch(clearCart());
       navigate("/");
+      toast.success("Logedout Successfully");
     }
     else{
       toast.error("Not login yet");
@@ -63,7 +72,7 @@ function Navbar() {
             {cart.length > 0 && (
               <span className="absolute -top-2 -right-3 bg-yellow-400 text-black text-xs font-bold
                w-5 h-5 rounded-full flex items-center justify-center animate-bounce">
-                {cart.length}
+                {quantity}
               </span>
             )}
           </NavLink>
