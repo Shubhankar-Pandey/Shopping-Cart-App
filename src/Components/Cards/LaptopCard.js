@@ -1,26 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
-import { add, remove } from "../Redux/Slices/CartSlice";
+import { add, remove } from "../../Redux/Slices/CartSlice";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function SkinCareCard({ item }) {
+function LaptopCard({ laptop }) {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function addToCart() {
-    dispatch(add(item));
+    dispatch(add(laptop));
     toast.success("Added to Cart!");
   }
 
   function removeFromCart() {
-    dispatch(remove(item.id));
+    dispatch(remove(laptop.id));
     toast.error("Removed from Cart");
   }
 
   function itemClickHandler() {
-    const title = item.title.toLowerCase().replace(/\s+/g, "");
-    navigate(`/skincare/${title}`, { state: { item } });
+    // format title -> /laptop/macbookairm2
+    const title = laptop.title.toLowerCase().replace(/\s+/g, "");
+    navigate(`/laptop/${title}`, { state: { laptop } });
   }
 
   return (
@@ -35,22 +36,23 @@ function SkinCareCard({ item }) {
         rounded-xl bg-gray-100 hover:bg-gray-200 duration-300"
       >
         <img
-          src={item.image}
-          alt={item.title}
+          src={laptop.image}
+          alt={laptop.title}
           className="object-contain w-[75%] h-[90%] transition-transform hover:scale-105"
         />
       </div>
 
       {/* Title + Price */}
       <div className="mt-3 flex justify-between items-center">
-        <h2 className="font-bold text-xl tracking-wide">{item.title}</h2>
-        <p className="font-bold text-green-600 text-2xl">₹{item.price}</p>
+        <h2 className="font-bold text-xl tracking-wide">{laptop.title}</h2>
+        <p className="font-bold text-green-600 text-2xl">₹{laptop.price}</p>
       </div>
 
-      {/* Short Specs */}
+      {/* Specs */}
       <ul className="mt-3 text-gray-700 text-sm space-y-1 font-semibold">
-        <li>Quantity: {item.quantity}</li>
-        <li>Skin Type: {item.skinType}</li>
+        <li>Processor: {laptop.processor}</li>
+        <li>RAM: {laptop.ram}</li>
+        <li>Storage: {laptop.storage}</li>
       </ul>
 
       {/* Buttons */}
@@ -63,7 +65,7 @@ function SkinCareCard({ item }) {
           View Details
         </button>
 
-        {cart.some((p) => p.id === item.id) ? (
+        {cart.some((p) => p.id === laptop.id) ? (
           <button
             onClick={removeFromCart}
             className="w-[45%] px-3 py-2 rounded-full bg-red-500 hover:bg-red-600 
@@ -85,4 +87,4 @@ function SkinCareCard({ item }) {
   );
 }
 
-export default SkinCareCard;
+export default LaptopCard;

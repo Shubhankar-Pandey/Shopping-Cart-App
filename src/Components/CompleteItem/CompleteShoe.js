@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { add, remove } from "../Redux/Slices/CartSlice";
+import { add, remove } from "../../Redux/Slices/CartSlice";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 

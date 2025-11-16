@@ -1,38 +1,27 @@
 import { useLocation } from "react-router-dom";
-import { add, remove } from "../Redux/Slices/CartSlice";
+import { add, remove } from "../../Redux/Slices/CartSlice";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
 // Icons
-import { FaMicrochip, FaStar, FaBatteryFull } from "react-icons/fa";
-import { MdStorage, MdOutlineLaptopMac } from "react-icons/md";
+import { FaMicrochip, FaCamera, FaBatteryFull, FaStar } from "react-icons/fa";
+import { MdPhoneIphone, MdStorage } from "react-icons/md";
 import { IoMdFlash } from "react-icons/io";
 
-function CompleteLaptop() {
+function CompleteMobile() {
   const location = useLocation();
-  const laptop = location.state?.laptop; // Safe access
+  const mobile = location.state.mobile;
 
-  const cart = useSelector((state) => state.cart);
+  const cart  = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  // Prevent crash on refresh
-  if (!laptop) {
-    return (
-      <div className="h-screen w-full flex justify-center items-center bg-gray-100">
-        <h1 className="text-3xl font-bold text-red-600">
-          Laptop details not found!
-        </h1>
-      </div>
-    );
-  }
-
   function addToCart() {
-    dispatch(add(laptop));
-    toast.success("Added to cart!");
+    dispatch(add(mobile));
+    toast.success("Added to cart");
   }
 
   function removeFromCart() {
-    dispatch(remove(laptop.id));
+    dispatch(remove(mobile.id));
     toast.error("Removed from cart");
   }
 
@@ -42,19 +31,19 @@ function CompleteLaptop() {
       <div className="bg-white shadow-xl w-full max-w-5xl rounded-3xl p-10 
         flex flex-col md:flex-row gap-12">
 
-        {/* LEFT — Image & Button */}
+        {/* LEFT — Minimal Image Card */}
         <div className="w-full md:w-1/2 flex flex-col items-center gap-6">
 
           <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 w-full flex justify-center">
             <img
-              src={laptop.image}
-              alt={laptop.title}
+              src={mobile.image}
+              alt={mobile.title}
               className="w-80 h-80 object-contain transition-all duration-300 hover:scale-105"
             />
           </div>
 
-          {/* ADD / REMOVE BUTTON */}
-          {cart.some((p) => p.id === laptop.id) ? (
+          {/* BIG ADD/REMOVE BUTTON */}
+          {cart.some((p) => p.id === mobile.id) ? (
             <button
               onClick={removeFromCart}
               className="w-full bg-red-600 text-white text-lg font-semibold py-3 rounded-xl
@@ -74,57 +63,69 @@ function CompleteLaptop() {
 
         </div>
 
-        {/* RIGHT — Details */}
+        {/* RIGHT — Product Info */}
         <div className="w-full md:w-1/2">
 
           {/* Title */}
-          <h1 className="text-4xl font-bold text-gray-800">{laptop.title}</h1>
+          <h1 className="text-4xl font-bold text-gray-800">{mobile.title}</h1>
 
           {/* Price */}
           <p className="text-3xl text-green-600 font-extrabold mt-3">
-            ₹{laptop.price.toLocaleString()}
+            ₹{mobile.price.toLocaleString()}
           </p>
 
           {/* Rating */}
           <div className="flex items-center gap-2 mt-3">
             <FaStar className="text-yellow-500 text-xl" />
             <span className="font-semibold text-gray-700">
-              {laptop.rating} / 5
+              {mobile.rating} / 5
             </span>
           </div>
 
-          {/* Specs */}
+          {/* Specs List */}
           <ul className="mt-8 space-y-4 text-gray-700 text-[1.05rem] font-medium">
 
             <li className="flex items-center gap-3">
               <FaMicrochip className="text-blue-600 text-2xl" />
               Processor:
-              <span className="font-semibold ml-1">{laptop.processor}</span>
+              <span className="font-semibold ml-1">{mobile.processor}</span>
             </li>
 
             <li className="flex items-center gap-3">
               <MdStorage className="text-indigo-600 text-2xl" />
               Storage:
-              <span className="font-semibold ml-1">{laptop.storage}</span>
+              <span className="font-semibold ml-1">{mobile.space} GB</span>
             </li>
 
             <li className="flex items-center gap-3">
-              <MdOutlineLaptopMac className="text-rose-600 text-2xl" />
-              RAM:
-              <span className="font-semibold ml-1">{laptop.ram}</span>
+              <FaCamera className="text-pink-600 text-2xl" />
+              Front Camera:
+              <span className="font-semibold ml-1">{mobile.frontCamera}</span>
+            </li>
+
+            <li className="flex items-center gap-3">
+              <FaCamera className="text-purple-600 text-2xl" />
+              Rear Camera:
+              <span className="font-semibold ml-1">{mobile.rearCamera}</span>
+            </li>
+
+            <li className="flex items-center gap-3">
+              <MdPhoneIphone className="text-rose-600 text-2xl" />
+              Main Camera:
+              <span className="font-semibold ml-1">{mobile.mainCamera}</span>
             </li>
 
             <li className="flex items-center gap-3">
               <FaBatteryFull className="text-green-600 text-2xl" />
               Battery:
-              <span className="font-semibold ml-1">{laptop.battery}</span>
+              <span className="font-semibold ml-1">{mobile.battery}</span>
             </li>
 
             <li className="flex items-center gap-3">
               <IoMdFlash className="text-orange-600 text-2xl" />
               Purchases:
               <span className="font-semibold ml-1">
-                {laptop.purchases.toLocaleString()}+
+                {mobile.purchases.toLocaleString()}+
               </span>
             </li>
 
@@ -133,14 +134,12 @@ function CompleteLaptop() {
           {/* Review */}
           <div className="mt-8 bg-gray-100 border border-gray-300 rounded-xl p-5">
             <h3 className="text-xl font-bold text-gray-800">Customer Review</h3>
-            <p className="italic text-gray-600 mt-1">{laptop.review}</p>
+            <p className="italic text-gray-600 mt-1">{mobile.review}</p>
           </div>
-
         </div>
-
       </div>
     </div>
   );
 }
 
-export default CompleteLaptop;
+export default CompleteMobile;

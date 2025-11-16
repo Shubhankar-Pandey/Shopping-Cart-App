@@ -1,27 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
-import { add, remove } from "../Redux/Slices/CartSlice";
+import { add, remove } from "../../Redux/Slices/CartSlice";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function LaptopCard({ laptop }) {
+function ShoeCard({ shoe }) {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function addToCart() {
-    dispatch(add(laptop));
+    dispatch(add(shoe));
     toast.success("Added to Cart!");
   }
 
   function removeFromCart() {
-    dispatch(remove(laptop.id));
+    dispatch(remove(shoe.id));
     toast.error("Removed from Cart");
   }
 
   function itemClickHandler() {
-    // format title -> /laptop/macbookairm2
-    const title = laptop.title.toLowerCase().replace(/\s+/g, "");
-    navigate(`/laptop/${title}`, { state: { laptop } });
+    const title = shoe.title.toLowerCase().replace(/\s+/g, "");
+    navigate(`/shoes/${title}`, { state: { shoe } });
   }
 
   return (
@@ -32,52 +31,48 @@ function LaptopCard({ laptop }) {
       {/* Image */}
       <div
         onClick={itemClickHandler}
-        className="cursor-pointer w-full h-[220px] flex justify-center items-center 
-        rounded-xl bg-gray-100 hover:bg-gray-200 duration-300"
+        className="cursor-pointer w-full h-[220px] flex justify-center items-center rounded-xl bg-gray-100 hover:bg-gray-200 duration-300"
       >
         <img
-          src={laptop.image}
-          alt={laptop.title}
+          src={shoe.image}
           className="object-contain w-[75%] h-[90%] transition-transform hover:scale-105"
+          alt="shoe"
         />
       </div>
 
       {/* Title + Price */}
       <div className="mt-3 flex justify-between items-center">
-        <h2 className="font-bold text-xl tracking-wide">{laptop.title}</h2>
-        <p className="font-bold text-green-600 text-2xl">₹{laptop.price}</p>
+        <h2 className="font-bold text-xl tracking-wide">{shoe.title}</h2>
+        <p className="font-bold text-green-600 text-2xl">₹{shoe.price}</p>
       </div>
 
-      {/* Specs */}
+      {/* Short Specs */}
       <ul className="mt-3 text-gray-700 text-sm space-y-1 font-semibold">
-        <li>Processor: {laptop.processor}</li>
-        <li>RAM: {laptop.ram}</li>
-        <li>Storage: {laptop.storage}</li>
+        <li>Brand: {shoe.brand}</li>
+        <li>Category: {shoe.category}</li>
+        <li>Material: {shoe.material}</li>
       </ul>
 
       {/* Buttons */}
       <div className="mt-4 flex justify-between items-center">
         <button
           onClick={itemClickHandler}
-          className="w-[45%] px-3 py-2 rounded-full bg-slate-800 hover:bg-slate-600 
-          text-white font-semibold duration-200"
+          className="w-[45%] px-3 py-2 rounded-full bg-slate-800 hover:bg-slate-600 text-white font-semibold duration-200"
         >
           View Details
         </button>
 
-        {cart.some((p) => p.id === laptop.id) ? (
+        {cart.some((p) => p.id === shoe.id) ? (
           <button
             onClick={removeFromCart}
-            className="w-[45%] px-3 py-2 rounded-full bg-red-500 hover:bg-red-600 
-            text-white font-semibold duration-200"
+            className="w-[45%] px-3 py-2 rounded-full bg-red-500 hover:bg-red-600 text-white font-semibold duration-200"
           >
             Remove
           </button>
         ) : (
           <button
             onClick={addToCart}
-            className="w-[45%] px-3 py-2 rounded-full bg-yellow-400 hover:bg-yellow-500 
-            text-black font-semibold duration-200"
+            className="w-[45%] px-3 py-2 rounded-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold duration-200"
           >
             Add to Cart
           </button>
@@ -87,4 +82,4 @@ function LaptopCard({ laptop }) {
   );
 }
 
-export default LaptopCard;
+export default ShoeCard;

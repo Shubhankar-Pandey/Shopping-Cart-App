@@ -4,12 +4,12 @@ import { ShoesData } from "../Data/ShoesData";
 import { MenClothsData } from "../Data/MenClothsData";
 import { SkinCareData } from "../Data/SkinCareData";
 import { WomenClothsData } from "../Data/WomenClothsData";
-import WomenClothCard from "../Components/WomenClothCard";
-import SkinCareCard from "../Components/SkinCareCard";
-import MenClothCard from "../Components/MenClothCard";
-import MobileCard from "../Components/MobileCard"
-import LaptopCard from "../Components/LaptopCard";
-import ShoeCard from "../Components/ShoeCard";
+import WomenClothCard from "../Components/Cards/WomenClothCard";
+import SkinCareCard from "../Components/Cards/SkinCareCard";
+import MenClothCard from "../Components/Cards/MenClothCard";
+import MobileCard from "../Components/Cards/MobileCard"
+import LaptopCard from "../Components/Cards/LaptopCard";
+import ShoeCard from "../Components/Cards/ShoeCard";
 import HeroSection from "../Components/HeroSection";
 import CategorySection from "../Components/CategorySection";
 
