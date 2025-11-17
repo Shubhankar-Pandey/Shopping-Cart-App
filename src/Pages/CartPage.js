@@ -11,8 +11,11 @@ function CartPage() {
   const [totalAmount, setTotalAmount] = useState(0);
   const navigate = useNavigate();
 
+  const [totalItem, setTotalItem] = useState(0);
+
   useEffect(() => {
     setTotalAmount(cart.reduce((acc, curr) => acc + curr.price*curr.quantity, 0));
+    setTotalItem(cart.reduce((acc, curr) => acc + curr.quantity, 0))
   }, [cart]);
 
   function buyNowHandler(){
@@ -48,7 +51,7 @@ function CartPage() {
             </h2>
 
             <div className="text-lg font-semibold space-y-3">
-              <p>Total Items: <span className="text-blue-600">{cart.length}</span></p>
+              <p>Total Items: <span className="text-blue-600">{totalItem}</span></p>
               <p>Total Amount: <span className="text-green-600 font-bold">
                 ₹ {totalAmount.toLocaleString()}
               </span></p>

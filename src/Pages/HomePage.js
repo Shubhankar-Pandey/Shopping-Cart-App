@@ -12,6 +12,7 @@ import LaptopCard from "../Components/Cards/LaptopCard";
 import ShoeCard from "../Components/Cards/ShoeCard";
 import HeroSection from "../Components/HeroSection";
 import CategorySection from "../Components/CategorySection";
+import Footer from "../Components/Footer";
 
 
 function HomePage(){
@@ -69,6 +70,8 @@ function HomePage(){
                     ))
                 }
             </div>
+
+            <Footer/>
 
         </div>
     )

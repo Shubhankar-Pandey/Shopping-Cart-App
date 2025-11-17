@@ -7,6 +7,7 @@ import LoginPage from "./Pages/LoginPage";
 import SignUpPage from "./Pages/SignUpPage";
 import BuyNowPage from "./Pages/BuyNowPage";
 import OrderPlacedPage from "./Pages/OrderPlacedPage";
+import PaymentPage from "./Pages/PaymentPage";
 
 import Navbar from "./Components/Navbar";
 
@@ -56,6 +57,7 @@ function App() {
           <Route path="/signUpPage" element = {<SignUpPage></SignUpPage>}></Route>
           <Route path="/buyNowPage" element = {<BuyNowPage></BuyNowPage>}></Route>
           <Route path="/orderPlacedPage" element = {<OrderPlacedPage></OrderPlacedPage>}></Route>
+          <Route path = "/paymentPage" element = {<PaymentPage></PaymentPage>}></Route>
 
           <Route path="/mobilePage" element = {<MobilePage/>} ></Route>
           <Route path="/laptopPage" element = {<LaptopPage/>} ></Route>
