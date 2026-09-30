@@ -13,7 +13,7 @@ import ShoeCard from "../Components/Cards/ShoeCard";
 import HeroSection from "../Components/HeroSection";
 import CategorySection from "../Components/CategorySection";
 import Footer from "../Components/Footer";
-
+import Bye  from "../Components/bye";
 
 function HomePage(){
     return (
@@ -72,6 +72,7 @@ function HomePage(){
             </div>
 
             <Footer/>
+            <Bye/>
 
         </div>
     )
